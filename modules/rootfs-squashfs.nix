@@ -27,7 +27,7 @@ in
   config = mkIf (config.mobile.rootfs.useSquashfs) {
     mobile.generatedFilesystems = {
       rootfs = lib.mkDefault {
-        filesystem = lib.mkForce "squashfs";                                    
+        filesystem = lib.mkForce "squashfs";
       };
     };
 
@@ -69,6 +69,7 @@ in
       # The only other thing on the FS is this file, and needs to be at the root.
       "/nix-path-registration" = lib.mkImageMediaOverride {
         neededForBoot = true;
+        fsType = "none";
         device = "/nix/.ro-store/nix-path-registration";
         options = [ "bind" ];
       };
